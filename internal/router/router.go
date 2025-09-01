@@ -1,18 +1,11 @@
 package router
-
+// ...existing code...
 import (
-	"log"
-	"net/http"
-
-	"github.com/gin-gonic/gin"
+    "github.com/gin-gonic/gin"
+    "Gin_Microservice/internal/handler"
 )
 
 // SetupRoutes sets up all API routes for the application.
 func SetupRoutes(r *gin.Engine) {
-    r.GET("/ping", func(c *gin.Context) {
-        log.Println("Ping endpoint hit")
-        c.JSON(http.StatusOK, gin.H{
-            "message": "pong",
-        })
-	})
+    r.GET("/ping", handler.PingHandler)
 }
