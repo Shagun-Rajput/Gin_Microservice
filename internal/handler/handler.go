@@ -1,11 +1,13 @@
 package handler
 
 import (
-    "net/http"
+	"log"
+	"net/http"
 
-    "github.com/gin-gonic/gin"
-    "Gin_Microservice/internal/service"
 	"Gin_Microservice/internal/config"
+	"Gin_Microservice/internal/service"
+
+	"github.com/gin-gonic/gin"
 )
 
 var AppConfig *config.Config
@@ -17,6 +19,7 @@ func SetConfig(cfg *config.Config) {
 
 // GetAllUsersHandler handles GET /users requests.
 func GetAllUsersHandler(c *gin.Context) {
+    log.Println("GetAllUsersHandler called.....")
     users, err := service.GetAllUsersService(AppConfig.DB)
     if err != nil {
         c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to fetch users"})

@@ -4,12 +4,18 @@ import (
     "log"
     "os"
 
+    "github.com/joho/godotenv"
     "github.com/gin-gonic/gin"
     "Gin_Microservice/internal/router"
     "Gin_Microservice/internal/config"
 )
 
 func main() {
+    // Load .env file
+    if err := godotenv.Load(); err != nil {
+        log.Println("No .env file found or failed to load .env file")
+    }
+
     port := os.Getenv("PORT")
     if port == "" {
         port = "8181"
