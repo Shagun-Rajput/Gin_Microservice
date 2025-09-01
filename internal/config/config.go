@@ -15,6 +15,7 @@ type Config struct {
     DBUser     string
     DBPassword string
     DBName     string
+    DBSchema   string
     DB         *sql.DB
 }
 
@@ -26,6 +27,7 @@ func NewConfig() *Config {
         DBUser:     os.Getenv("DB_USER"),
         DBPassword: os.Getenv("DB_PASSWORD"),
         DBName:     os.Getenv("DB_NAME"),
+        DBSchema:   os.Getenv("DB_SCHEMA"),
     }
 }
 
@@ -33,9 +35,9 @@ func NewConfig() *Config {
 func (cfg *Config) InitDB() error {
 	log.Println("Initializing database connection...")
     connStr := fmt.Sprintf(
-        "host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
-        cfg.DBHost, cfg.DBPort, cfg.DBUser, cfg.DBPassword, cfg.DBName,
-    )
+    "host=%s port=%s user=%s password=%s dbname=%s search_path=%s sslmode=disable",
+    cfg.DBHost, cfg.DBPort, cfg.DBUser, cfg.DBPassword, cfg.DBName, cfg.DBSchema,
+)
     db, err := sql.Open("postgres", connStr)
     if err != nil {
 		log.Fatal("Failed to open database connection:", err)
