@@ -1,3 +1,4 @@
+A Starter template for building RESTful microservices using Gin in Go
 #Gin_Microservice
 
 This project is a starter template for building RESTful microservices using [Gin](https://github.com/gin-gonic/gin) in Go. It demonstrates a clean architecture with separate layers for configuration, routing, handlers, services, repositories, and models, and uses a PostgreSQL database.
